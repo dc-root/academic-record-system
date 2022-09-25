@@ -46,7 +46,7 @@ public class Enturmacao {
     }
 
     public String toString() {
-        return this.aluno+" ---> "+this.turma;
+        return "[aluno "+this.aluno.getNome()+" foi matriculado na data de "+this.getDataEnturmacao()+" na turma "+this.turma.getNome()+"] - #"+this.codigo;
     }
     public boolean equals(Object myObject) {
         if(this == myObject) return true;

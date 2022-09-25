@@ -67,7 +67,7 @@ public class FicharioTurma {
         ).findAny().orElse(null);
 
         if(turmaaSerExcluida != null) {
-            if(turmaaSerExcluida.getAlunos().size() != 0) {
+            if(turmaaSerExcluida.getAlunos().size() == 0) {
                 System.out.print("Você realmente deseja excluir esta turma? (yes/no): ");
                 String option = entrada.nextLine();
 

@@ -44,7 +44,7 @@ public class FicharioEnturmacao {
         ).findAny().orElse(null);
 
 
-       if((alunoaSerMatriculado != null) || (turmaaSeMatricular != null)) {
+       if(alunoaSerMatriculado != null && turmaaSeMatricular != null) {
             Enturmacao novaEnturmacao = new Enturmacao(alunoaSerMatriculado, turmaaSeMatricular);
 
             if(turmaaSeMatricular.getAlunos().contains(alunoaSerMatriculado) || enturmacoes.contains(novaEnturmacao)) {
@@ -99,5 +99,15 @@ public class FicharioEnturmacao {
         } else {
             System.out.println("\n> Error: Numero de matricula e/ou código da turma não encontrado!");
         }
+    }
+
+    public void relatorio() {
+        System.out.println("\n[RELATÓRIO DE ENTURMAÇÕES]");
+        System.out.println("------------------------------------------");
+        this.enturmacoes.stream()
+            .forEach(enturmacao -> {
+                System.out.println(enturmacao);
+                System.out.println("------------------------------------------");
+        });
     }
 }

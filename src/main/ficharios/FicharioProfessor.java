@@ -83,7 +83,7 @@ public class FicharioProfessor {
         ).findAny().orElse(null);
 
         if(professoraSerRemovido != null) {
-            // if(professoraSerRemovido.getTurmas().size() != 0) {
+            // if(professoraSerRemovido.getTurmas().size() == 0) {
                 System.out.print("Você realmente deseja excluir este professor? (yes/no): ");
                 String option = entrada.nextLine();
 

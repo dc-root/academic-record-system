@@ -26,6 +26,7 @@ public class OpTurma {
             System.out.println("5 - Relatório da Turma ");
             System.out.println("6 - Matricular aluno ");
             System.out.println("7 - Desmatricular aluno ");
+            System.out.println("8 - Relatório de Enturmações ");
             System.out.println("0 - Voltar ao menu principal");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
@@ -38,6 +39,7 @@ public class OpTurma {
                 case 5 -> ficharioTurma.relatorio();
                 case 6 -> ficharioEnturmacao.matricularAluno();
                 case 7 -> ficharioEnturmacao.desmatricularAluno();
+                case 8 -> ficharioEnturmacao.relatorio();
                 default -> {
                     if (opcao != 0) System.out.println("Opção inválida.");
                 }
