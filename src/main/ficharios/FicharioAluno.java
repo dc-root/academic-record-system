@@ -4,6 +4,8 @@ import main.modelos.Aluno;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.*;
+import java.time.format.*;
 
 public class FicharioAluno {
     private Scanner entrada;
@@ -20,7 +22,7 @@ public class FicharioAluno {
     }
 
     public void cadastrar() {
-        String nome, telefone, cpf, email;
+        String nome, telefone, cpf, email, dataNascimento;
 
         System.out.println("\n ------------- CADASTRO ALUNO ------------- ");
         System.out.print("Nome: ");
@@ -34,8 +36,21 @@ public class FicharioAluno {
         
         System.out.print("Telefone: ");
         telefone = entrada.nextLine();
+
+        System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        dataNascimento = entrada.nextLine();
+
+        LocalDate nascimento = LocalDate.now();
+
+        try {
+            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            nascimento = LocalDate.parse(dataNascimento, formatador);
+        } catch (DateTimeException e) {
+            System.out.println("\n> warning: Formato de data invalido!");
+            return;
+        }
         
-        Aluno aluno = new Aluno(nome, cpf, telefone, email);
+        Aluno aluno = new Aluno(nome, cpf, telefone, email, nascimento);
         
         if (alunos.contains(aluno)) {
             System.out.println("\n> Error: Não foi possivel cadastrar o aluno");
@@ -51,9 +66,9 @@ public class FicharioAluno {
         String matricula = entrada.nextLine();
 
         Aluno alunoaSerAlterado = this.alunos.stream()
-            .filter(aluno -> aluno.getMatricula()
-                .equals(matricula)
-            ).findAny().orElse(null);
+        .filter(aluno -> aluno.getMatricula()
+            .equals(matricula)
+        ).findAny().orElse(null);
 
         if(alunoaSerAlterado != null) {
             System.out.printf("Nome: ");

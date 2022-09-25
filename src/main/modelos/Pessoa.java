@@ -1,5 +1,7 @@
 package main.modelos;
 
+import java.time.*;
+import java.time.format.*;
 import java.util.Objects;
 
 public class Pessoa {
@@ -7,6 +9,7 @@ public class Pessoa {
     protected String cpf;
     protected String telefone;
     protected String email;
+    protected LocalDate dataNascimento;
 
     public Pessoa(){}
     public Pessoa(

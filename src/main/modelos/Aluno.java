@@ -1,6 +1,8 @@
 package main.modelos;
 
 import java.util.Objects;
+import java.time.*;
+import java.time.format.*;
 
 public class Aluno extends Pessoa {
     private String matricula;
@@ -11,13 +13,15 @@ public class Aluno extends Pessoa {
         String nome,
         String cpf,
         String telefone,
-        String email
+        String email,
+        LocalDate dataNascimento
     ) {
         this.nome = nome;
         this.matricula = cpf;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+        this.dataNascimento = dataNascimento;
     }
     
     public String getMatricula() {
@@ -29,6 +33,9 @@ public class Aluno extends Pessoa {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
+    public String getDataNascimento() {
+        return ""+this.dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 
     protected void receberTurma(Turma turma) {
         this.turma = turma;
@@ -36,7 +43,7 @@ public class Aluno extends Pessoa {
     }
 
     public String toString() {
-        return "| "+this.nome+" "+this.matricula;
+        return "| nome: "+this.nome+" matricula: "+this.matricula+" nascimento: "+this.getDataNascimento();
     }
     public boolean equals(Object myObject) {
         if(this == myObject) return true;
