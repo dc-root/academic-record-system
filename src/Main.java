@@ -15,7 +15,7 @@ public class Main {
         ArrayList<Turma> turmas = new ArrayList<>();
         ArrayList<Enturmacao> enturmacoes = new ArrayList<>();
 
-        FicharioEnturmacao ficharioEnturmacao = new FicharioEnturmacao(enturmacoes, turmas, alunos, profs);
+        FicharioEnturmacao ficharioEnturmacao = new FicharioEnturmacao(enturmacoes, turmas, alunos); // <- profs
 
         int opcao;
         do {

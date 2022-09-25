@@ -37,7 +37,7 @@ public class FicharioAluno {
         
         Aluno aluno = new Aluno(nome, cpf, telefone, email);
         
-        if (alunos.contains(aluno)){
+        if (alunos.contains(aluno)) {
             System.out.println("\n> Error: Não foi possivel cadastrar o aluno");
             System.out.println("> warning: Já existe um aluno com esse número de cpf cadastrado no sistem");
         } else {
@@ -80,27 +80,31 @@ public class FicharioAluno {
             .equals(matricula)
         ).findAny().orElse(null);
 
-        if(alunoaSerExcluido != null && alunoaSerExcluido.getTurma() == null) {
-            System.out.print("Você realmente deseja excluir este aluno? (yes/no): ");
-            String option = entrada.nextLine();
+        if(alunoaSerExcluido != null ) {
+            if(alunoaSerExcluido.getTurma() == null) {
+                System.out.print("Você realmente deseja excluir este aluno? (yes/no): ");
+                String option = entrada.nextLine();
 
-            switch(option) {
-                case "y", "Y", "YES", "yes" -> {
-                    if(this.alunos.remove(alunoaSerExcluido)) {
-                        System.out.println("\n> Success: aluno(a) removido com sucesso!");
-                    } else {
-                        System.out.println("> warnin: houve algum erro ao remover o aluno!");
-                        return;
+                switch(option) {
+                    case "y", "Y", "YES", "yes" -> {
+                        if(this.alunos.remove(alunoaSerExcluido)) {
+                            System.out.println("\n> Success: aluno(a) removido com sucesso!");
+                        } else {
+                            System.out.println("> warnin: houve algum erro ao remover o aluno!");
+                            return;
+                        }
+                    }
+                    case "n", "N", "NO", "no" -> { return; }
+                    default -> {
+                        System.out.println("\n> Error: opção invalida!");
                     }
                 }
-                case "n", "N", "NO", "no" -> { return; }
-                default -> {
-                    System.out.println("\n> Error: opção invalida!");
-                }
+            } else {
+                System.out.println("\n> Error: Houve um erro ao remover o aluno!");
+                System.out.println("\t> warning: Talvez você esteja tentando excluir um aluno matriculado em alguma turma,\n\tdesvincule-o da turma antes de excluí-lo!");
             }
         } else {
-            System.out.println("\n> Error: Houve um erro ao remover o aluno!");
-            System.out.println("\t> warning: Talvez você esteja tentando excluir um aluno matriculado em alguma turma,\n\tdesvincule-o da turma antes de excluí-lo!");
+            System.out.println("\nError: Matricula não encontrada! :(");
         }
     }
 
@@ -123,8 +127,6 @@ public class FicharioAluno {
             System.out.printf("| E-mail: %s\n", alunoaSerConsultado.getEmail());
             System.out.println("------------------------------------------");
             System.out.printf("| Turma: %s\n", (alunoaSerConsultado.getTurma() != null ? alunoaSerConsultado.getTurma().getNome()+"/"+alunoaSerConsultado.getTurma().getCodigo() : ""));
-            System.out.println("------------------------------------------");
-            System.out.printf("| Disciplinas: \n");
             System.out.println("------------------------------------------");
         } else {
             System.out.println("\nError: Numero de matricula não encontrado! :(");

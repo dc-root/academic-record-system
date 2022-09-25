@@ -30,7 +30,7 @@ public class Aluno extends Pessoa {
         this.turma = turma;
     }
 
-    public void receberTurma(Turma turma) {
+    protected void receberTurma(Turma turma) {
         this.turma = turma;
         turma.receberAluno(this);
     }

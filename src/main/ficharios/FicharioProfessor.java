@@ -78,30 +78,34 @@ public class FicharioProfessor {
         String registro = entrada.nextLine();
 
         Professor professoraSerRemovido = this.profs.stream()
-            .filter(prof -> prof.getRegistro()
-                .equals(registro)
-            ).findAny().orElse(null);
+        .filter(prof -> prof.getRegistro()
+            .equals(registro)
+        ).findAny().orElse(null);
 
-        if(professoraSerRemovido != null && professoraSerRemovido.getTurmas() == null) {
-            System.out.print("Você realmente deseja excluir este professor? (yes/no): ");
-            String option = entrada.nextLine();
+        if(professoraSerRemovido != null) {
+            // if(professoraSerRemovido.getTurmas().size() != 0) {
+                System.out.print("Você realmente deseja excluir este professor? (yes/no): ");
+                String option = entrada.nextLine();
 
-            switch(option) {
-                case "y", "Y", "YES", "yes" ->  {
-                    if(this.profs.remove(professoraSerRemovido)) {
-                        System.out.println("\n> Success: professor(a) removido com sucesso!");
-                    } else {
-                        System.out.println("> warning: houve algum erro ao remover o professor!");
+                switch(option) {
+                    case "y", "Y", "YES", "yes" ->  {
+                        if(this.profs.remove(professoraSerRemovido)) {
+                            System.out.println("\n> Success: professor(a) removido com sucesso!");
+                        } else {
+                            System.out.println("> warning: houve algum erro ao remover o professor!");
+                        }
+                    }
+                    case "n", "N", "NO", "no" -> { return; }
+                    default -> {
+                        System.out.println("\n> Error: opção invalida!");
                     }
                 }
-                case "n", "N", "NO", "no" -> { return; }
-                default -> {
-                    System.out.println("\n> Error: opção invalida!");
-                }
-            }
+            // } else {
+            //     System.out.println("\n> Error: Houve um erro ao remover professor!");
+            //     System.out.println("\t> warning: Talvez você esteja tentando excluir um professor matriculado em alguma turma,\n\tdesvincule-o da turma antes de excluí-lo!");
+            // }
         }  else {
-            System.out.println("\n> Error: Houve um erro ao remover professor!");
-            System.out.println("\t> warning: Talvez você esteja tentando excluir um professor matriculado em alguma turma,\n\tdesvincule-o da turma antes de excluí-lo!");
+            System.out.println("\nError: Registro não encontrado! :(");
         }
     }
 
@@ -110,9 +114,9 @@ public class FicharioProfessor {
         String registro = entrada.nextLine();
 
         Professor professoraSerConsultado = this.profs.stream()
-            .filter(prof -> prof.getRegistro()
-                .equals(registro)
-            ).findAny().orElse(null);
+        .filter(prof -> prof.getRegistro()
+            .equals(registro)
+        ).findAny().orElse(null);
         
         if(professoraSerConsultado != null) {
             System.out.printf("\n[RELATÓRIO DO(A) PROFESSOR(A) %s]\n", professoraSerConsultado.getNome().toUpperCase());
@@ -123,9 +127,6 @@ public class FicharioProfessor {
             System.out.println("------------------------------------------");
             System.out.printf("| E-mail: %s\n", professoraSerConsultado.getEmail());
             System.out.println("------------------------------------------");
-            System.out.print("| Turmas: ");
-            professoraSerConsultado.getTurmas().stream().forEach(turma -> System.out.print("["+turma.getNome()+"/"+turma.getCodigo()+"] "));
-            System.out.println("\n------------------------------------------");
             System.out.printf("| Disciplina: %s\n", professoraSerConsultado.getDisciplina());
             System.out.println("------------------------------------------");
         } else {

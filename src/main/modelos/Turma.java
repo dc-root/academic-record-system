@@ -11,7 +11,6 @@ public class Turma {
     private Random gerador = new Random();
 
     private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
-    private ArrayList<Professor> profs = new ArrayList<Professor>();
 
     public Turma(String nome) {
         this.nome = nome;
@@ -30,22 +29,15 @@ public class Turma {
     }
     
     public ArrayList<Aluno> getAlunos() {
-        return this.alunos;
+        return alunos;
     }
-    public ArrayList<Professor> getProfs() {
-        return this.profs;
-    }
-    protected void receberProfessor(Professor prof) {
-        this.profs.add(prof);
-    }
+
     protected void receberAluno(Aluno aluno) {
-        this.alunos.add(aluno);
+        alunos.add(aluno);
     }
 
     public String toString() {
-        return "| "+this.nome+" | "+this.codigo+" | ["+this.getAlunos().size()+"] "+
-            (this.getAlunos().size() > 1 ? "alunos" : "aluno")+" | ["+this.getProfs().size()+"] "+
-            (this.getProfs().size() > 1 ? "professores" : "professor");
+        return "| "+this.nome+" | "+this.codigo+" | ["+this.getAlunos().size()+"] "+(this.getAlunos().size() > 1 ? "alunos" : "aluno");
     }
     public boolean equals(Object myObject) {
         if (this == myObject) return true;

@@ -23,8 +23,8 @@ public class OpProfessor {
             System.out.println("3 - Excluir Professor ");
             System.out.println("4 - Consultar Professor ");
             System.out.println("5 - Relatório do Professor ");
-            System.out.println("6 - Vincular professor a uma turma ");
-            System.out.println("7 - Desvincular professor de uma turma ");
+            // System.out.println("6 - Matricular professor em uma turma ");
+            // System.out.println("7 - Desmatricular professor de uma turma ");
             System.out.println("0 - Voltar ao menu principal");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
@@ -35,8 +35,8 @@ public class OpProfessor {
                 case 3 -> ficharioProfessor.excluir();
                 case 4 -> ficharioProfessor.consultar();
                 case 5 -> ficharioProfessor.relatorio();
-                case 6 -> ficharioEnturmacao.vincularATurma();
-                case 7 -> ficharioEnturmacao.desvincularDeTurma();
+                // case 6 -> ficharioEnturmacao.matricularProfessoraTurma();
+                // case 7 -> ficharioEnturmacao.desmatricularProfessorDeTurma();
                 default -> {
                     if (opcao != 0) System.out.println("Opção inválida.");
                 }

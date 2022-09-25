@@ -7,8 +7,6 @@ public class Professor extends Pessoa {
     private String registro;
     private String disciplina;
 
-    private ArrayList<Turma> turmas = new ArrayList<Turma>();
-
     public Professor(){}
     public Professor(
         String nome,
@@ -24,17 +22,6 @@ public class Professor extends Pessoa {
         this.email = email;
         this.disciplina = disciplina;
     }
-    public Professor(
-        String nome,
-        String telefone,
-        String email,
-        String disciplina
-    ) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.disciplina = disciplina;
-    }
     public String getRegistro() {
         return registro;
     }
@@ -43,15 +30,6 @@ public class Professor extends Pessoa {
     }
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
-    }
-
-    public ArrayList<Turma> getTurmas() {
-        return this.turmas;
-    }
-    
-    public void receberTurma(Turma turma) {
-        this.turmas.add(turma);
-        turma.receberProfessor(this);
     }
 
     public String toString() {

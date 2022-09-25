@@ -1,6 +1,7 @@
 package main.ficharios;
 
 import main.modelos.Turma;
+import main.ficharios.FicharioEnturmacao;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -9,9 +10,14 @@ public class FicharioTurma {
     private Scanner entrada;
 
     private ArrayList<Turma> turmas;
+    private FicharioEnturmacao ficharioEnturmacao;
 
-    public FicharioTurma(ArrayList<Turma> turmas) {
+    public FicharioTurma(
+        ArrayList<Turma> turmas,
+        FicharioEnturmacao ficharioEnturmacao
+    ) {
         this.turmas = turmas;
+        this.ficharioEnturmacao = ficharioEnturmacao;
         this.entrada = new Scanner(System.in);
     }
 
@@ -39,9 +45,9 @@ public class FicharioTurma {
         String codigo = entrada.nextLine();
 
         Turma turmaaSerAlterada = this.turmas.stream()
-            .filter(turma -> turma.getCodigo()
-                .equals(codigo)
-            ).findAny().orElse(null);
+        .filter(turma -> turma.getCodigo()
+            .equals(codigo)
+        ).findAny().orElse(null);
 
         if(turmaaSerAlterada != null) {
             System.out.printf("Nome: ");
@@ -56,31 +62,32 @@ public class FicharioTurma {
         String codigo = entrada.nextLine();
 
         Turma turmaaSerExcluida = this.turmas.stream()
-            .filter(turma -> turma.getCodigo()
-                .equals(codigo)
-            ).findAny().orElse(null);
-       
-        if(turmaaSerExcluida.getAlunos().size() != 0 && 
-            turmaaSerExcluida.getProfs().size() != 0 && 
-            turmaaSerExcluida != null
-        ) {
-            System.out.print("Você realmente deseja excluir esta turma? (yes/no): ");
-            String option = entrada.nextLine();
+        .filter(turma -> turma.getCodigo()
+            .equals(codigo)
+        ).findAny().orElse(null);
 
-            switch(option) {
-                case "y", "Y", "YES", "yes" -> {
-                    if(this.turmas.remove(turmaaSerExcluida)) {
-                        System.out.println("\n> Success: turma removido com sucesso!");
+        if(turmaaSerExcluida != null) {
+            if(turmaaSerExcluida.getAlunos().size() != 0) {
+                System.out.print("Você realmente deseja excluir esta turma? (yes/no): ");
+                String option = entrada.nextLine();
+
+                switch(option) {
+                    case "y", "Y", "YES", "yes" -> {
+                        if(this.turmas.remove(turmaaSerExcluida)) {
+                            System.out.println("\n> Success: turma removido com sucesso!");
+                        }
+                    }
+                    case "n", "N", "NO", "no" -> { return; }
+                    default -> {
+                        System.out.println("\n> Error: opção invalida!");
                     }
                 }
-                case "n", "N", "NO", "no" -> { return; }
-                default -> {
-                    System.out.println("\n> Error: opção invalida!");
-                }
+            } else {
+                System.out.println("\n> Error: Houve um erro ao remover turma!");
+                System.out.println("\t> warning: Talvez você esteja tentando excluir uma turma com alunos e/ou professores matriculados,\n\tdesvincule-os da turma antes de excluí-la!");
             }
         } else {
-            System.out.println("\n> Error: Houve um erro ao remover turma!");
-            System.out.println("\t> warning: Talvez você esteja tentando excluir uma turma com alunos e/ou professores matriculados,\n\tdesvincule-os da turma antes de excluí-la!");
+            System.out.println("\nError: Código não encontrado! :(");
         }
     }
 
@@ -89,9 +96,9 @@ public class FicharioTurma {
         String codigo = entrada.nextLine();
 
         Turma turmaaSerConsultada = this.turmas.stream()
-            .filter(turma -> turma.getCodigo()
-                .equals(codigo)
-            ).findAny().orElse(null);
+        .filter(turma -> turma.getCodigo()
+            .equals(codigo)
+        ).findAny().orElse(null);
         
         if(turmaaSerConsultada != null) {
             System.out.printf("\n[RELATÓRIO DA TURMA '%s']\n", turmaaSerConsultada.getNome().toUpperCase());
@@ -104,15 +111,6 @@ public class FicharioTurma {
                 System.out.println("-------------------------------------------------------------------------");
             } else {
                 System.out.println("> Nenhum aluno matriculado nessa turma!");
-            }
-
-            System.out.println("\n--- PROFESSORES ---------------------------------------------------------");
-            if(turmaaSerConsultada.getProfs().size() != 0) {
-                turmaaSerConsultada.getProfs().stream()
-                    .forEach(prof -> System.out.printf("%s\t\t%s\t%s\t%s\n", prof.getNome(), prof.getRegistro(), prof.getEmail(), prof.getTelefone()));
-                System.out.println("-------------------------------------------------------------------------");
-            } else {
-                System.out.println("> Nenhum professor matriculado nessa turma!");
             }
         } else {
             System.out.println("\nError: Código não encontrado! :(");

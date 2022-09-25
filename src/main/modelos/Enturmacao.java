@@ -4,28 +4,45 @@ import main.modelos.Aluno;
 import main.modelos.Turma;
 import main.modelos.Professor;
 
-import java.util.Random;
+import java.time.*;
+import java.time.format.*;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Enturmacao {
     private String codigo;
+    private LocalDateTime dataEnturmacao;
+
     private Aluno aluno;
     private Turma turma;
-
-    private Random gerador = new Random();
 
     public Enturmacao(
         Aluno aluno,
         Turma turma
     ) {
-        this.codigo = ""+gerador.nextInt(100000);
+        this.dataEnturmacao = LocalDateTime.now();
         this.aluno = aluno;
         this.turma = turma;
+        this.codigo = ""+dataEnturmacao.format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
     }
 
     public String getCodigo() {
         return codigo;
+    }
+    public String getDataEnturmacao() {
+        return ""+dataEnturmacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void vincularAlunoaTurma() {
+        this.aluno.receberTurma(this.turma);
     }
 
     public String toString() {
@@ -36,9 +53,10 @@ public class Enturmacao {
         if(myObject == null || this.getClass() != myObject.getClass()) return false;
 
         Enturmacao enturmacao = (Enturmacao) myObject;
-        return Objects.equals(codigo, enturmacao.codigo);
+        return Objects.equals(aluno, enturmacao.aluno) &&
+               Objects.equals(turma, enturmacao.turma);
     }
     public int hashCode() {
-        return Objects.hash(codigo);
+        return Objects.hash(aluno, turma);
     }
 }

@@ -1,7 +1,8 @@
 package main.operacoes;
 
-import main.ficharios.FicharioAluno;
 import main.modelos.Aluno;
+
+import main.ficharios.FicharioAluno;
 
 import java.util.Scanner;
 import java.util.ArrayList;

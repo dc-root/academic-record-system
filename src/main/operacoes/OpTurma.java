@@ -14,7 +14,7 @@ public class OpTurma {
         FicharioEnturmacao ficharioEnturmacao
     ) {
         Scanner entrada = new Scanner(System.in);
-        FicharioTurma ficharioTurma = new FicharioTurma(turmas);
+        FicharioTurma ficharioTurma = new FicharioTurma(turmas, ficharioEnturmacao);
         
         int opcao;
         do {
