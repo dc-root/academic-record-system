@@ -101,6 +101,10 @@ public class FicharioEnturmacao {
         }
     }
 
+    // Professor
+    public void matricularProfessoraTurma() {}
+    public void desmatricularProfessorDeTurma() {}
+
     public void relatorio() {
         System.out.println("\n[RELATÓRIO DE ENTURMAÇÕES]");
         System.out.println("------------------------------------------");
