@@ -75,7 +75,7 @@ public class FicharioAluno {
             alunoaSerAlterado.setNome(entrada.nextLine());
 
             System.out.printf("Telefone: ");
-            alunoaSerAlterado.setTelefone(entrada.nextLine());
+            alunoaSerAlterado.setTelefone(entrada.nextLine());  
 
             System.out.printf("Email: ");
             alunoaSerAlterado.setEmail(entrada.nextLine());
