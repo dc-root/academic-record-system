@@ -1,6 +1,6 @@
 package main.modelos;
 
-public class Pessoa {
+public abstract class Pessoa {
     protected String nome;
     protected String cpf;
 
