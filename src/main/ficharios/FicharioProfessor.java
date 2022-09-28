@@ -5,7 +5,7 @@ import main.modelos.Professor;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FicharioProfessor {
+public class FicharioProfessor implements  InterfaceFichario {
     private Scanner entrada;
 
     private ArrayList<Professor> profs;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.time.*;
 import java.time.format.*;
 
-public class FicharioAluno {
+public class FicharioAluno implements  InterfaceFichario {
     private Scanner entrada;
 
     private ArrayList<Aluno> alunos;

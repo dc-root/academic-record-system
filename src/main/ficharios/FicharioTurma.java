@@ -1,23 +1,20 @@
 package main.ficharios;
 
 import main.modelos.Turma;
-import main.ficharios.FicharioEnturmacao;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FicharioTurma {
+public class FicharioTurma implements  InterfaceFichario {
     private Scanner entrada;
 
     private ArrayList<Turma> turmas;
-    private FicharioEnturmacao ficharioEnturmacao;
 
     public FicharioTurma(
         ArrayList<Turma> turmas,
         FicharioEnturmacao ficharioEnturmacao
     ) {
         this.turmas = turmas;
-        this.ficharioEnturmacao = ficharioEnturmacao;
         this.entrada = new Scanner(System.in);
     }
 
